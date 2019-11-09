@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="filebarsearch.JavaeditorTest"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            default="false"
+            id="filebarsearch.editor1"
+            name="javaeditor_test4">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="filebarsearch.ExplorerView"
+            id="filebarsearch.explorerView"
+            name="ファイルバー検索"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="filebarsearch.CommandHandler"
+            commandId="filebarsearch.command1">
+      </handler>
+      <handler
+            class="filebarsearch.OpenEditorCommandHandler"
+            commandId="filebarsearch.command2">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?before=additions">
+         <command
+               commandId="filebarsearch.command1"
+               icon="icons/sample.gif"
+               label="ファイルバー検索"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:filebarsearch.explorerView">
+         <command
+               commandId="filebarsearch.command2"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="filebarsearch.command1"
+            name="ファイルバー検索">
+      </command>
+      <command
+            id="filebarsearch.command2"
+            name="Open Editor">
+      </command>
+   </extension>
+
+   <!-- プラグイン設定 -->
+   <extension point="org.eclipse.core.runtime.preferences">
+      <initializer class="filebarsearch.FileBarPreferenceInitializer"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+         class="filebarsearch.FileBarPreferencePage"
+         id="filebarsearch.fileBarPreference"
+         name="ファイルバー"/>
+   </extension>
+</plugin>
